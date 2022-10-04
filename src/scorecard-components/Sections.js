@@ -1,32 +1,45 @@
-import React, {useContext}  from 'react'
+import React from 'react'
 import {Values} from './Values'
 
-export const Sections = (props) => {
-  const data = props.data;
-  const values = [];
-  let sectionTotal = totalSection(data.scores);
+export class Sections extends React.Component {
 
-  Object.keys(data.scores).forEach((k) => {
-    values.push(<Values sectionValue={k} score={data.scores[k]}/>);
-  });
-  
-  return (
-   
-      <table>
-        <tbody>
-        <tr><th>{data.sectionName} Section</th><th>Score</th></tr>
-        {values}
-        <tr><th>{data.sectionName} Section Total: {sectionTotal}</th></tr>
-        </tbody>
-      </table>
+
+  updateValue(key) {
+    let updateData = Object.assign({}, this.props.data);
     
-  )
-}
+    Object.keys(updateData.scores).forEach(k => {
+      if(k === key['k'].toString()) {
+        updateData.scores[k] += 5;
+      }
+    });
+    this.props.updateVal(updateData);
+  }
 
-function totalSection(scores){
-  let total = 0;
-  Object.values(scores).forEach(score =>{
-    total += score;
-  })
-  return total;
+  renderValues(data){
+    let sectionData = [];
+    let scores = data.scores
+    Object.keys(scores).forEach((k) => {
+      sectionData.push(<>
+        <div>
+          {k} <Values score={scores[k]} keyValue={k} onClick={() => this.updateValue({k})}/>
+        </div>
+      </>)
+    })
+    return(
+      sectionData
+    )
+  }
+  render(){
+    return (
+        <>
+        <div>
+          {this.renderValues(this.props.data)}
+        </div>
+        <div>
+          {this.props.section} Total: {this.props.sectionTotal}
+        </div>
+        <br></br>
+        </>
+    )
+  }
 }
