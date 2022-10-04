@@ -19,9 +19,9 @@ export class Player extends React.Component{
     const section = dat.sectionName.toLowerCase();
     updatedSection[section].scores = dat.scores;
     console.log(updatedSection);
-    this.setState({
-      data: updatedSection
-    })
+    // this.setState({
+    //   data: updatedSection
+    // })
   
   }
 
