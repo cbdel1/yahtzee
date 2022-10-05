@@ -15,7 +15,7 @@ export default class App extends React.Component {
   render(){
     return (
       <>
-        <Player name={this.state.playerName} player={this.state.curPlayer}/>
+        <Player selected={"fours"} values={[1,3,2,4,1]}/>
       </>
     );
   }
