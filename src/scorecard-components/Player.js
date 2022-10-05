@@ -2,10 +2,15 @@ import React from 'react'
 import {Scorecard} from './Scorecard'
 
 export class Player extends React.Component{
+
     render(){
         return(
             <>
-                <Scorecard toUpdate={5} selected={this.props.selected} values={this.props.values}/>
+                <Scorecard 
+                values={this.props.values} 
+                reset={() => this.props.reset()}
+                moved={() => this.props.moved()}
+                />
             </>
         )
     }

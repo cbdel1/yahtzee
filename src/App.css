@@ -1,0 +1,11 @@
+.dice{
+    display: flex;
+    flex-direction: row;
+}
+
+.die{
+    height: 100px;
+    width: 200px;
+    border: 1px solid black;
+    font-size: 30px;
+}
