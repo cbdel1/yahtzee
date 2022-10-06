@@ -109,7 +109,7 @@ export default class App extends React.Component {
     }
     return (
       <>
-        <div>Roll number: {this.state.rollNumber}</div>
+        <div><span>{this.state.playerName} : </span>Roll number: {this.state.rollNumber}</div>
         <div className='dice'>
           {allDice}
           </div>
