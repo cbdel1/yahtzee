@@ -2,44 +2,15 @@ import React from 'react'
 import './die-styles.css'
 
 export class Die extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            change: this.props.change,
-            number: this.props.number,
-            classSelect: 'die '
-        }
-    }
-
-    noChange(){
-        const changeStatus = this.state.change;
-        let classSelect = this.state.classSelect;
-        
-        if(changeStatus === false){
-            classSelect = 'die ';
-        } else {
-            classSelect = 'die save';
-        }
-        
-        this.setState({
-            change: changeStatus ? false : true,
-            classSelect: classSelect,
-        })
-        this.props.changeFunction(this.state.change, this.props.index);
-    }
-
-    render(){
-        let classNames = '';
-        if(this.props.number === 0){
-            this.setState({
-                classSelect: 'die '
-            })
-        } else {
-            classNames = this.state.classSelect;
-        }
-        
+    render(){        
         return (
-            <span className={classNames} change={this.props.change} onClick={() => this.noChange()}>{this.props.number}</span>
+            <span className={this.props.classSelect} 
+            number={this.props.number} 
+            change={this.props.change} 
+            index={this.props.index} 
+            onClick={() => this.props.changeFunction(this.props.index)}>
+                {this.props.number}
+            </span>
         )
     }
 }

@@ -10,72 +10,109 @@ export default class App extends React.Component {
     this.state = {
       curPlayer: 1,
       playerName: 'Chase',
-      dice: Array(6).fill(<Die number={0} change={1} changeFunction={(status, index) => this.saveDie(status, index)}/>),
+      dice: [[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}]],
       diceNumbers: Array(6).fill(0),
       rollNumber: 0,
-      holdIndex: Array(6).fill(false)
+      moved: false
     }
   }
 
-  moved(){
-    this.setState({
-      rollNumber: 0,
-      holdIndex: Array(6).fill(false),
-    })
-    this.reset();
+
+  renderDice(i){
+    let dice = (<Die 
+        classSelect={this.state.dice[i][0].classSelect} 
+        number={this.state.dice[i][0].number}
+        change={this.state.dice[i][0].change}
+        index={i}
+        changeFunction={() => this.saveDie(i)}
+        />)
+    return dice;
+  }
   
+  moved(){
+    let diceInfo = this.state.dice.slice();
+    diceInfo.forEach(ele => {
+      ele[0].change = true;
+      ele[0].classSelect = 'die';
+    })
+    this.setState({
+      dice: diceInfo,
+      moved: true,
+      rollNumber: 0
+
+    })
+    
   }
 
-  saveDie(status, index){
-    let holdIndex = this.state.holdIndex;
-    holdIndex[index] = status;
-    this.setState({
-      holdIndex: holdIndex
-    })
+  saveDie(index){
+    if(this.state.rollNumber < 3 && this.state.moved === false && this.state.rollNumber > 0){
+      let diceInfo = this.state.dice.slice();
+      let toChange = diceInfo[index][0];
+
+      toChange.change = !toChange.change;
+      toChange.classSelect = toChange.change===true ? 'die': 'die save';
+      diceInfo[index][0] = toChange;
+
+      this.setState({
+        dice: diceInfo
+      })
+    }
   }
 
   getDice(){
-    let dice = this.state.dice;
+    let diceInfo = this.state.dice.slice();
     let rollNumber = this.state.rollNumber;
     let diceNumbers = [];
-    let newRoll = [];
+    let moved = this.state.moved;
 
-    if(rollNumber++ < 3){
-      const holdIndex = this.state.holdIndex;
-      dice.forEach((die, index) => {
-        if(holdIndex[index] === false){
-          let newNumber = Math.floor(Math.random() * 6 + 1)
-          newRoll.push(<Die index={index} number={newNumber} change={1} changeFunction={(status, index) => this.saveDie(status, index)}/>);
-          diceNumbers.push(newNumber);
-        } else {
-          newRoll.push(die);
-          diceNumbers.push(die.props.number);
+    if(moved === true){
+      moved = false;
+    }
+
+    if(rollNumber+1 <= 3 && moved === false){
+      for(let i=0; i < diceInfo.length; i++){
+        let newNumber = Math.floor(Math.random() * 6 + 1);
+        if(diceInfo[i][0].change === true){
+          diceInfo[i][0].number = newNumber;
         }
-        
-      })
+        diceNumbers.push(diceInfo[i][0].number);
+      }
+      rollNumber++;
+
+      
       this.setState({
-        dice: newRoll,
+        dice: diceInfo,
         diceNumbers: diceNumbers,
-        rollNumber: this.state.rollNumber+1
+        rollNumber: rollNumber,
+        moved: moved
       })
-    } 
+    }
     
    
   }
 
   reset(){
     this.setState({
-      dice: Array(6).fill(<Die number={0} change={true} changeFunction={(status, index) => this.saveDie(status, index)}/>)
+      dice: [[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}]],
+      rollNumber: 0,
+      moved: false,
+      diceNumbers: Array(6).fill(0),
     })
     
   }
 
-
   render(){
-
+    let diceInfo = this.state.dice;
+    let allDice = [];
+    for(let i=0; i<diceInfo.length; i++){
+      allDice.push(this.renderDice(i))
+    }
     return (
       <>
-        <div className='dice'>{this.state.dice}</div>
+        <div>Roll number: {this.state.rollNumber}</div>
+        <div className='dice'>
+          {allDice}
+          </div>
         <button onClick={() => this.getDice()}>Roll</button>
         <br></br><br></br>
         <Player values={this.state.diceNumbers} reset={() => this.reset()} moved={() => this.moved()}/>
@@ -86,5 +123,6 @@ export default class App extends React.Component {
 }
 
 
+$(function(){
 
-
+})
