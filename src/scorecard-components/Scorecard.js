@@ -61,6 +61,7 @@ export class Scorecard extends React.Component {
             } else {
               next.upperTotalScore = score;
             }
+            this.props.upperScore(next.upperTotalScore);
             history.push(next)
             this.setState({
               initialState: history,
