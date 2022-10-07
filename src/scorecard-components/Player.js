@@ -13,10 +13,16 @@ export class Player extends React.Component{
             upperscore: score
         })
     }
+    lowerScore(score){
+        this.setState({
+            lowerscore: score
+        })
+    }
 
     reset(){
         this.setState({
-            upperscore: 0
+            upperscore: 0,
+            lowerscore: 0
         })
         this.props.reset();
     }
@@ -29,8 +35,10 @@ export class Player extends React.Component{
                 reset={() => this.reset()}
                 moved={() => this.props.moved()}
                 upperScore = {(score) => this.upperScore(score)}
+                lowerScore = {(score) => this.lowerScore(score)}
                 />
                 <div>Player Upper Score: {this.state.upperscore} </div>
+                <div>Player Lower Score: {this.state.lowerscore} </div>
             </>
         )
     }

@@ -10,8 +10,8 @@ export default class App extends React.Component {
     this.state = {
       curPlayer: 1,
       playerName: 'Chase',
-      dice: [[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}]],
-      diceNumbers: Array(6).fill(0),
+      dice: [[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}]],
+      diceNumbers: Array(5).fill(0),
       rollNumber: 0,
       moved: false
     }
@@ -93,10 +93,10 @@ export default class App extends React.Component {
 
   reset(){
     this.setState({
-      dice: [[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}]],
+      dice: [[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}],[{"classSelect": "die", "number": 0, "change": true}]],
       rollNumber: 0,
       moved: false,
-      diceNumbers: Array(6).fill(0),
+      diceNumbers: Array(5).fill(0),
     })
     
   }
