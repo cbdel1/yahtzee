@@ -109,20 +109,16 @@ export default class App extends React.Component {
     }
     return (
       <>
-        <div><span>{this.state.playerName} : </span>Roll number: {this.state.rollNumber}</div>
-        <div className='dice'>
-          {allDice}
-          </div>
-        <button onClick={() => this.getDice()}>Roll</button>
-        <br></br><br></br>
-        <Player values={this.state.diceNumbers} reset={() => this.reset()} moved={() => this.moved()}/>
-        
+        <div className='container'>
+          <div className='header'><span>{this.state.playerName} : Roll number: {this.state.rollNumber}</span></div>
+          <div className='dice'>
+            {allDice}
+            </div>
+          <div className='roll-btn-container'><div><button className="roll-btn" onClick={() => this.getDice()}>Roll</button></div></div>
+          <br></br><br></br>
+          <Player values={this.state.diceNumbers} reset={() => this.reset()} moved={() => this.moved()}/>
+        </div>
       </>
     );
   }
 }
-
-
-$(function(){
-
-})

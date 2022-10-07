@@ -37,8 +37,6 @@ export class Player extends React.Component{
                 upperScore = {(score) => this.upperScore(score)}
                 lowerScore = {(score) => this.lowerScore(score)}
                 />
-                <div>Player Upper Score: {this.state.upperscore} </div>
-                <div>Player Lower Score: {this.state.lowerscore} </div>
             </>
         )
     }

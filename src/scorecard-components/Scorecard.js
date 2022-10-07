@@ -1,6 +1,10 @@
 import React from 'react'
 import {LowerSection} from './LowerSection'
 import {UpperSection} from './UpperSection'
+import * as $ from 'jquery'
+
+import './scorecard-styles/scorecard.css'
+
 
 export class Scorecard extends React.Component {
   constructor(props){
@@ -8,21 +12,21 @@ export class Scorecard extends React.Component {
     this.state = {
       initialState: [{
           UpperSection: [
-                { section: 'ones', value: 1, score: null, key: 'ones'},
-                { section: 'twos', value: 2, score: null, key: 'twos' },
-                { section: 'threes', value: 3, score: null, key: 'threes' },
-                { section: 'fours', value: 4, score: null, key: 'fours' },
-                { section: 'fives', value: 5, score: null, key: 'fives' },
-                { section: 'sixes', value: 6, score: null, key: 'sixes' },
+                { section: 'ones', value: 1, score: null, key: 'ones', desc: "Add all ones"},
+                { section: 'twos', value: 2, score: null, key: 'twos', desc: "Add all twos" },
+                { section: 'threes', value: 3, score: null, key: 'threes', desc: "Add all threes" },
+                { section: 'fours', value: 4, score: null, key: 'fours', desc: "Add all fours" },
+                { section: 'fives', value: 5, score: null, key: 'fives', desc: "Add all fives" },
+                { section: 'sixes', value: 6, score: null, key: 'sixes', desc: "Add all sixes" },
               ],
           LowerSection: [
-                { section: '3Kind', score: null, key: '3 Of A Kind' },
-                { section: '4Kind',  score: null, key: '4 Of A Kind' },
-                { section: 'FullHouse', score: null, key: 'Full House' },
-                { section: 'SmStraight', score: null, key: 'Small Straight' },
-                { section: 'LgStraight', score: null, key: 'Large Straight' },
-                { section: 'Yahtzee', score: null, key: 'Yahtzee' },
-                { section: 'Chance', score: null, key: 'Chance' },
+                { section: '3Kind', score: null, key: '3 Of A Kind', desc: "Total all dice"  },
+                { section: '4Kind',  score: null, key: '4 Of A Kind', desc: "Total all dice"  },
+                { section: 'FullHouse', score: null, key: 'Full House', desc: "3 of a kind and 2 of a kind. 25 Points"  },
+                { section: 'SmStraight', score: null, key: 'Small Straight', desc: "Add all sixes"  },
+                { section: 'LgStraight', score: null, key: 'Large Straight', desc: "Add all sixes"  },
+                { section: 'Yahtzee', score: null, key: 'Yahtzee', desc: "Add all sixes"  },
+                { section: 'Chance', score: null, key: 'Chance', desc: "Add all sixes"  },
               ],
               upperScore: 0,
               lowerScore: 0,
@@ -159,20 +163,40 @@ export class Scorecard extends React.Component {
   render(){
     const data = this.state.initialState;
     const current = data[this.state.stepNumber];
+
+   
+
     return (
       <>
-        <div>{this.renderSection(current.UpperSection, "upper")}</div>
-        <div>Upper Subtotal: {current.upperScore}</div>
-        <div>Upper Bonus: {current.upperBonus}</div>
-        <div>Upper Total: {current.upperTotalScore}</div>
-        
-        <div>{this.renderSection(current.LowerSection)}</div>
-        <div>Lower Total: {current.lowerScore}</div>
-        <h4>Total Score: {current.upperTotalScore + current.lowerScore}</h4>
-        <br></br>
-        <div><button onClick={() => this.reset()}>Reset</button></div>
-        <br></br>
-        <div>History: {this.showHistory()}</div>
+      <div className='scorecard'>
+          <div className='section' id="upperSection">
+            
+              <div className='section-info'>
+                <div class="section-lines-container">{this.renderSection(current.UpperSection, "upper")}
+                <div className='section-lines'><em><b>Subtotal: </b></em><input type="button" className='sectionChoices' disabled value={current.upperScore}/></div>
+                <div className='section-lines'><em><b>Bonus: </b></em><input type="button" className='sectionChoices' disabled value={current.upperBonus}/></div>
+                <div className='section-lines'><em><b>Upper Total: </b></em><input type="button" className='sectionChoices' disabled value={current.upperTotalScore}/></div>
+                </div>
+              </div>
+              
+          </div>
+
+          <hr></hr>
+          <div className='section' id="lowerSection">
+            <div className='section-info'>
+            <div class="section-lines-container">
+              {this.renderSection(current.LowerSection)}
+              <div className='section-lines'><em><b>Lower Total: </b></em><input type="button" className='sectionChoices' disabled value={current.lowerScore}/></div>
+              </div>
+            </div>
+          </div>
+          <br></br>
+          <div className='bottom-scorecard'>
+            <h4>Total Score: {current.upperTotalScore + current.lowerScore}</h4>
+            <div><button onClick={() => this.reset()}>Reset</button></div>
+            <div>History: {this.showHistory()}</div>
+          </div>
+        </div>
       </>
     )
   }

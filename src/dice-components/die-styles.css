@@ -1,3 +1,30 @@
 .save {
     background: orange;
 }
+.dice{
+    flex: 0 0 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-grow: 1;
+}
+.die {
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    font-size: 30px;
+    transition: all 500ms;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+    .die{
+        height: 40px;
+        width: 40px;
+    }
+}
