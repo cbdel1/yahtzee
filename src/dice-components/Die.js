@@ -6,7 +6,6 @@ import three from '../resources/three.png'
 import four from '../resources/four.png'
 import five from '../resources/five.png'
 import six from '../resources/six.png'
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 export class Die extends React.Component {
     getDiceImg(number){

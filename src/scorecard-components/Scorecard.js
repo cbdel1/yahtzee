@@ -1,7 +1,7 @@
+/* eslint-disable no-sequences */
 import React from 'react'
 import {LowerSection} from './LowerSection'
 import {UpperSection} from './UpperSection'
-import * as $ from 'jquery'
 
 import './scorecard-styles/scorecard.css'
 
