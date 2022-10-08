@@ -12,18 +12,21 @@
 .die {
     height: 100px;
     width: 100px;
-    border: 1px solid black;
     font-size: 30px;
-    transition: all 500ms;
+    /* transition: all 500ms; */
     text-align: center;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    
+}
+.die img:hover {
+    background-color: green;
 }
 
 @media screen and (max-width: 800px) {
-    .die{
+    .die, .die img{
         height: 40px;
         width: 40px;
     }

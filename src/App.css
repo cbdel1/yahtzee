@@ -32,3 +32,11 @@
     color:white;
 }
 
+.showdice-enter {
+    opacity: 0.01;
+}
+
+.showdice-enter.showdice-enter-active{
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+}

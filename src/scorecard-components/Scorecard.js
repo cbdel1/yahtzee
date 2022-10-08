@@ -172,7 +172,8 @@ export class Scorecard extends React.Component {
           <div className='section' id="upperSection">
             
               <div className='section-info'>
-                <div class="section-lines-container">{this.renderSection(current.UpperSection, "upper")}
+                
+                <div className="section-lines-container">{this.renderSection(current.UpperSection, "upper")}
                 <div className='section-lines'><em><b>Subtotal: </b></em><input type="button" className='sectionChoices' disabled value={current.upperScore}/></div>
                 <div className='section-lines'><em><b>Bonus: </b></em><input type="button" className='sectionChoices' disabled value={current.upperBonus}/></div>
                 <div className='section-lines'><em><b>Upper Total: </b></em><input type="button" className='sectionChoices' disabled value={current.upperTotalScore}/></div>
@@ -184,7 +185,7 @@ export class Scorecard extends React.Component {
           <hr></hr>
           <div className='section' id="lowerSection">
             <div className='section-info'>
-            <div class="section-lines-container">
+            <div className="section-lines-container">
               {this.renderSection(current.LowerSection)}
               <div className='section-lines'><em><b>Lower Total: </b></em><input type="button" className='sectionChoices' disabled value={current.lowerScore}/></div>
               </div>

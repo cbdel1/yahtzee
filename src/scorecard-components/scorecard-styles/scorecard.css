@@ -9,7 +9,7 @@ button{
     text-align: center;
     box-shadow: 0 0 3px red;
     padding: 10px;
-    width: 40%;
+    width: 20%;
     margin: auto;
 }
 
@@ -26,6 +26,9 @@ button{
 .section-lines {
     display: flex;
     justify-content: flex-end;
+}
+.section-lines > input {
+    cursor: pointer;
 }
 
 

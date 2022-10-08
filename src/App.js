@@ -2,7 +2,7 @@ import './App.css';
 import {Player} from './scorecard-components/Player'
 import {Die} from './dice-components/Die'
 import React from 'react';
-import * as $ from 'jquery'
+
 
 export default class App extends React.Component { 
   constructor(props){
@@ -110,10 +110,12 @@ export default class App extends React.Component {
     return (
       <>
         <div className='container'>
-          <div className='header'><span>{this.state.playerName} : Roll number: {this.state.rollNumber}</span></div>
+          <div className='header'><span>{this.state.playerName} : Roll number : {this.state.rollNumber}</span></div>
           <div className='dice'>
             {allDice}
+         
             </div>
+            
           <div className='roll-btn-container'><div><button className="roll-btn" onClick={() => this.getDice()}>Roll</button></div></div>
           <br></br><br></br>
           <Player values={this.state.diceNumbers} reset={() => this.reset()} moved={() => this.moved()}/>
