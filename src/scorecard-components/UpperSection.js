@@ -1,6 +1,4 @@
 import React from 'react'
-import img from '../resources/info-button.jpg'
-
 export class UpperSection extends React.Component{
     render(){
         return(
